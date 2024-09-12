@@ -4,6 +4,7 @@ import time
 from datetime import datetime
 from configparser import ConfigParser
 from random import randint
+from gevent.pywsgi import WSGIServer
 
 app = Flask(__name__)
 
@@ -88,4 +89,6 @@ def fetch_tweets():
     return jsonify(all_tweets), 200
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Production
+    http_server = WSGIServer(('0.0.0.0', 5000), app)
+    http_server.serve_forever()
