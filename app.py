@@ -12,13 +12,6 @@ app = Flask(__name__)
 DEFAULT_QUERY = '(from:elonmusk) lang: en'
 DEFAULT_LIMIT = 10
 
-# Leer configuraciones de usuario desde config.ini
-config = ConfigParser()
-config.read('config.ini')
-username = config['X']['username']
-email = config['X']['email']
-password = config['X']['password']
-
 # Autenticar con X.com
 client = Client(language='en-US')
 client.load_cookies('cookies.json')
